@@ -35,8 +35,10 @@ public class DashScopeController {
     /*chatClient方式*/
     @GetMapping("/clientChat")
     public String clientChat(String msg) {
-
-        return dashScopeChatClient.prompt().user(msg).call().content();
+        return dashScopeChatClient.prompt()
+                .user(msg)
+                .call()
+                .content();
     }
 }
 

@@ -72,6 +72,9 @@ public class DeepSeekController {
      */
     @GetMapping(value = "/clientStreamChat", produces = "text/html;charset=utf-8")
     public Flux<String> streamChat(String msg) {
-        return deepSeekChatClient.prompt().user(msg).stream().content();
+        return deepSeekChatClient.prompt()
+                .user(msg)
+                .stream()
+                .content();
     }
 }
