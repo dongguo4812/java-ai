@@ -6,12 +6,11 @@ spring:
     # 阿里云百炼  通义千问模型
     dashscope:
       api-key: sk-4c41d490f36c4c5daaf0c3bb4447c5c9
-#本地大模型
+    #本地大模型
     # 本地ollama
     ollama:
       base-url: http://localhost:11434
       chat:
-        options:
-          model: deepseek-r1:1.5b
+        model: deepseek-r1:7b
 server:
   port: 8080
