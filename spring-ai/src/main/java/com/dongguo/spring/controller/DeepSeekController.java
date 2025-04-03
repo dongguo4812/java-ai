@@ -49,6 +49,8 @@ public class DeepSeekController {
         Prompt prompt = new Prompt(new UserMessage(msg));
         return this.ollamaChatModel.stream(prompt.getContents());
     }
+
+
     /*chatClient方式*/
 
     /**
@@ -86,4 +88,5 @@ public class DeepSeekController {
                 .stream()
                 .content();
     }
+
 }

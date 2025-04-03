@@ -25,16 +25,18 @@ public class ChatHistoryController {
 
     /**
      * 获取会话id
+     *
      * @param type
      * @return
      */
     @GetMapping(value = "/{type}")
     public List<String> getHistory(@PathVariable("type") String type) {
-       return chatHistoryRepository.getChatIds(type);
+        return chatHistoryRepository.getChatIds(type);
     }
 
     /**
      * 获取指定chatId的对话信息
+     *
      * @param type
      * @param chatId
      * @return
@@ -42,7 +44,7 @@ public class ChatHistoryController {
     @GetMapping(value = "/chat/{chatId}")
     public List<MessageVO> getChatHistory(@PathVariable("type") String type, @PathVariable("chatId") String chatId) {
         List<Message> messageList = chatMemory.get(chatId, Integer.MAX_VALUE);
-        if (messageList.isEmpty()){
+        if (messageList.isEmpty()) {
             return List.of();
         }
 //        List<MessageVO> messageVOList = new ArrayList<>(messageList.size());

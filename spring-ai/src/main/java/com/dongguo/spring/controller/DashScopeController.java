@@ -1,11 +1,15 @@
 package com.dongguo.spring.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import com.dongguo.spring.repository.ChatHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.dongguo.spring.entity.ChatTypeEnum.CHAT;
 
 /**
  * 阿里云百炼  通义千问
@@ -30,11 +34,15 @@ public class DashScopeController {
         return dashScopeChatModel.call(msg);
     }
     /*chatClient方式*/
+    private final ChatHistoryRepository chatHistoryRepository;
     @GetMapping("/clientChat")
-    public String clientChat(String msg) {
+    public String clientChat(String msg, String chatId) {
+        // 保存会话id
+        chatHistoryRepository.save(CHAT.getType(), chatId);
         return dashScopeChatClient
                 .prompt()
                 .user(msg)
+                .advisors(a -> a.param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, chatId))
                 .call()
                 .content();
     }
