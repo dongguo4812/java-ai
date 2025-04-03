@@ -14,3 +14,8 @@ spring:
         model: deepseek-r1:7b
 server:
   port: 8080
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug  #指定包的日志级别
+    com.dongguo.spring: debug

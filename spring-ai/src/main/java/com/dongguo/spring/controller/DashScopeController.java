@@ -1,4 +1,4 @@
-package com.dongguo.spring.ai;
+package com.dongguo.spring.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
 import org.springframework.ai.chat.client.ChatClient;
@@ -35,7 +35,8 @@ public class DashScopeController {
     /*chatClient方式*/
     @GetMapping("/clientChat")
     public String clientChat(String msg) {
-        return dashScopeChatClient.prompt()
+        return dashScopeChatClient
+                .prompt()
                 .user(msg)
                 .call()
                 .content();

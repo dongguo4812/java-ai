@@ -1,4 +1,4 @@
-package com.dongguo.spring.ai;
+package com.dongguo.spring.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;
@@ -58,7 +58,8 @@ public class DeepSeekController {
      */
     @GetMapping("clientChat")
     public String clientChat(String msg) {
-        return deepSeekChatClient.prompt()
+        return deepSeekChatClient
+                .prompt()
                 .user(msg)
                 .call()
                 .content();
@@ -72,7 +73,8 @@ public class DeepSeekController {
      */
     @GetMapping(value = "/clientStreamChat", produces = "text/html;charset=utf-8")
     public Flux<String> streamChat(String msg) {
-        return deepSeekChatClient.prompt()
+        return deepSeekChatClient
+                .prompt()
                 .user(msg)
                 .stream()
                 .content();
