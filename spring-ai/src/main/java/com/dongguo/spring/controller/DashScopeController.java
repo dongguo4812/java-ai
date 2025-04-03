@@ -1,6 +1,7 @@
 package com.dongguo.spring.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 阿里云百炼  通义千问
  */
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("dashScope")
 public class DashScopeController {
@@ -16,11 +18,6 @@ public class DashScopeController {
     /*chatModel方式*/
     private final DashScopeChatModel dashScopeChatModel;
     private final ChatClient dashScopeChatClient;
-
-    public DashScopeController(DashScopeChatModel dashScopeChatModel, ChatClient dashScopeChatClient) {
-        this.dashScopeChatModel = dashScopeChatModel;
-        this.dashScopeChatClient = dashScopeChatClient;
-    }
 
     @GetMapping("/modelChat")
     public String modelChat(String msg) {
