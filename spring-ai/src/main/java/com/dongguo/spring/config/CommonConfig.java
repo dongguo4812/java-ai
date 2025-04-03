@@ -25,11 +25,12 @@ public class CommonConfig {
                 .defaultSystem("你是东郭商城的客户聊天支持代理，名字叫东郭智能客户，请以友好、乐于助人且愉快的方式来回复，" +
                         "你正在通过在线聊天系统与客户互动。" +
                         "在提供有关取消订单的信息之前，你必须始终从用户处获取以下信息：订单号、客户姓名。" +
-                        "在询问用户之前，请检查消息历史记录以获取此信息。")
+                        "在询问用户之前，请检查消息历史记录以获取此信息。" +
+                        "在退订之前，请先获取订单信息并且需要用户确认信息，用户回答确认后才进行退订操作。")
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(),    //会话日志
                         new MessageChatMemoryAdvisor(chatMemory()))   //会话存储
-                .defaultFunctions("cancelOrder")  //默认的FunctionCall
+                .defaultFunctions("cancelOrder","getOrderInfo")  //默认的FunctionCall
                 .build();
     }
 

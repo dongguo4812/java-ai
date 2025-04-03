@@ -1,5 +1,6 @@
 package com.dongguo.spring.service;
 
+import com.dongguo.spring.entity.OrderInfo;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +38,29 @@ public class OrderTools {
      */
     @JsonClassDescription("处理订单退订")
     public record CancelOrderRequest(String orderNo, String userName) {
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Bean
+    @Description("获取订单信息") //
+    public Function<CancelOrderRequest, OrderInfo> getOrderInfo() {
+        return OrderRequest -> {
+            //调用订单信息apply
+            return orderService.getOrderInfo(OrderRequest.orderNo, OrderRequest.userName);
+        };
+    }
+
+    /**
+     * 密封类
+     *
+     * @param orderNo
+     * @param userName
+     */
+    @JsonClassDescription("处理订单退订")
+    public record OrderRequest(String orderNo, String userName) {
     }
 }
 
